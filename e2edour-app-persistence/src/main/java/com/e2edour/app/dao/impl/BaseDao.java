@@ -1,14 +1,12 @@
 package com.e2edour.app.dao.impl;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.e2edour.common.utils.LoggerUtil;
-import com.e2edour.common.utils.XmlUtil;
 import com.mongodb.WriteResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

@@ -4,20 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>e2edour</artifactId>
         <groupId>com.e2edour</groupId>
-        <version>1.0.0</version>
+        <artifactId>e2edour-app</artifactId>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>e2edour-app-bot</artifactId>
+    <name>e2edour-app-bot</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
+            <version>2.11.0</version>
         </dependency>
     </dependencies>
-    <build>
+    <!--<build>
         <finalName>e2edour-app-bot</finalName>
         <plugins>
             <plugin>
@@ -98,6 +100,6 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 </project>

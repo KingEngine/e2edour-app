@@ -3,18 +3,52 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.e2edour</groupId>
-		<artifactId>e2edour</artifactId>
+		<artifactId>e2edour-app</artifactId>
 		<relativePath>../pom.xml</relativePath>
-		<version>${project.version}</version>
+		<version>1.0</version>
 	</parent>
 	<artifactId>e2edour-app-persistence</artifactId>
-	<name>persistence</name>
+	<name>e2edour-app-persistence</name>
+	<packaging>jar</packaging>
 	<description>persistence</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.e2edour</groupId>
 			<artifactId>e2edour-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<!-- mongodb begin -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb-log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb-cross-store</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>bson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 		</dependency>
 	</dependencies>
 </project>

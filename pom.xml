@@ -3,23 +3,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.e2edour</groupId>
-    <artifactId>e2edour</artifactId>
-    <version>${project.version}</version>
+    <artifactId>e2edour-app</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
-    <name>e2edour</name>
+    <name>Parent</name>
     <modules>
-        <module>e2edour-app-persistence</module>
-        <module>e2edour-app-engine</module>
-        <module>e2edour-app-service</module>
-        <module>e2edour-app-facade</module>
-        <module>e2edour-web-app</module>
-        <module>e2edour-common</module>
         <module>e2edour-app-bot</module>
+        <module>e2edour-app-engine</module>
+        <module>e2edour-app-facade</module>
+        <module>e2edour-app-persistence</module>
+        <module>e2edour-app-service</module>
+        <module>e2edour-common</module>
+        <module>e2edour-web-app</module>
     </modules>
     <properties>
+        <!-- Generic properties -->
+        <java.version>1.6</java.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- 项目编码 -->
-        <project.version>1.0.0</project.version>
         <!-- 项目版本 -->
         <spring.version>4.1.7.RELEASE</spring.version>
         <!-- spring 版本 -->
@@ -92,11 +93,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -421,18 +417,49 @@
                 <artifactId>httpmime</artifactId>
                 <version>4.1.2</version>
             </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.e2edour</groupId>
+                <artifactId>e2edour-app-facade</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.e2edour</groupId>
+                <artifactId>e2edour-app-persistence</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.e2edour</groupId>
+                <artifactId>e2edour-app-service</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.e2edour</groupId>
+                <artifactId>e2edour-common</artifactId>
+                <version>1.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- compiler插件, 设定JDK版本 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <showWarnings>true</showWarnings>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

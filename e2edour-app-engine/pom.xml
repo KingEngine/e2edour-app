@@ -1,22 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.e2edour</groupId>
-    <artifactId>e2edour</artifactId>
-    <relativePath>../pom.xml</relativePath>
-    <version>${project.version}</version>
-  </parent>
-  <artifactId>e2edour-app-engine</artifactId>
-  <name>engine</name>
-  <description>engine</description>
-  <dependencies>
-  	  <dependency>
-		  <groupId>com.e2edour</groupId>
-		  <artifactId>e2edour-app-facade</artifactId>
-	  </dependency>
-	  <dependency>
-		  <groupId>com.e2edour</groupId>
-		  <artifactId>e2edour-app-service</artifactId>
-	  </dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.e2edour</groupId>
+        <artifactId>e2edour-app</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>e2edour-app-engine</artifactId>
+    <name>e2edour-app-engine</name>
+    <description>engine</description>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.e2edour</groupId>
+            <artifactId>e2edour-app-facade</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.e2edour</groupId>
+            <artifactId>e2edour-app-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+        </dependency>
+    </dependencies>
 </project>
