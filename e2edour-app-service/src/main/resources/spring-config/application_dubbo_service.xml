@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://code.alibabatech.com/schema/dubbo 
+	   http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+       default-autowire="byName">
+    <dubbo:service
+            interface="com.e2edour.app.facade.TopicsFacade"
+            ref="TopicsService"/>
+
+    <dubbo:service
+            interface="com.e2edour.app.facade.SettingManagerFacade"
+            ref="SettingManagerService"/>
+
+    <dubbo:service
+            interface="com.e2edour.app.facade.ISurpriseService"
+            ref="SurpriseService"/>
+
+    <dubbo:service
+            interface="com.e2edour.app.facade.ILeaveMsgService"
+            ref="LeaveMsgService"/>
+
+    <dubbo:service
+            interface="com.e2edour.app.facade.FetcherFacade"
+            ref="fetcherService"/>
+
+    <dubbo:service
+            interface="com.e2edour.app.facade.LoginFacade"
+            ref="loginService"/>
+
+    <dubbo:service interface="com.e2edour.app.facade.WebPFacade"
+            ref="webPService"/>
+
+    <dubbo:service interface="com.e2edour.app.facade.CustomerFacade"
+                   ref="customerService"/>
+    
+    <dubbo:service interface="com.e2edour.app.facade.EaasyManagerFacade"
+                   ref="eaasyManagerService"/>
+</beans>
