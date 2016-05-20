@@ -12,7 +12,7 @@ public interface LoginFacade {
 	
 	/**
 	 * 登陆操作
-	 * @param Bo
+	 * @param bo
 	 * @return
 	 */
 	public OperatorBO login(OperatorBO bo);

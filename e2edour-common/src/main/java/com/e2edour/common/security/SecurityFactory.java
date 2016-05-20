@@ -11,7 +11,6 @@ public class SecurityFactory {
      * <p>
      * MD5签名算法
      * @param content
-     * @param key
      * @return
      * @author king
      * @since 2015年3月24日
@@ -24,6 +23,9 @@ public class SecurityFactory {
             e.printStackTrace();
         }
         return null;
+    }
+    public static void main(String[] args){
+        System.out.println(signMD5("000000"));
     }
 
 }
