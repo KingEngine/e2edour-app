@@ -1,4 +1,4 @@
-package com.turing.util;
+package com.turing;
 
 import java.security.Key;
 import java.security.MessageDigest;

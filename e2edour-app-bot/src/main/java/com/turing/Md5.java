@@ -1,4 +1,4 @@
-package com.turing.util;
+package com.turing;
 import java.security.MessageDigest;
 /**
  * md5加密

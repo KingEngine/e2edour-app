@@ -12,7 +12,7 @@ import com.turing.util._
 object TuringActor {
 
   def main(args: Array[String]) {
-    Router.send("你知道图灵机器人吗？", "123456")
+      Router.send("你是谁？", "123456")
   }
 
 }
@@ -36,6 +36,7 @@ object Router {
     obj.getCode match {
       //文本类型需要将图灵替换为小乐
       case "100000" => obj.setText(obj.getText.replaceAll(replaceWord, newWord))
+      case "40004" =>obj.setText("小乐今天累了,需要休息了")
     }
     print(obj.getText)
     obj.getText
