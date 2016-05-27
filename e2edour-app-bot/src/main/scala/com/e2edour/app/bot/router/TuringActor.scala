@@ -1,6 +1,8 @@
 package com.e2edour.app.bot.router
 
-import com.alibaba.fastjson.{JSONObject}
+import akka.actor.Actor
+import akka.actor.Actor.Receive
+import com.alibaba.fastjson.JSONObject
 import com.turing.util._
 
 /**
@@ -9,12 +11,8 @@ import com.turing.util._
   * @author King
   * @version 2016/5/20
   */
-object TuringActor {
-
-  def main(args: Array[String]) {
-      Router.send("你是谁？", "123456")
-  }
-
+object TuringActor extends Actor{
+  override def receive: Receive = ???
 }
 
 object Router {
@@ -36,7 +34,7 @@ object Router {
     obj.getCode match {
       //文本类型需要将图灵替换为小乐
       case "100000" => obj.setText(obj.getText.replaceAll(replaceWord, newWord))
-      case "40004" =>obj.setText("小乐今天累了,需要休息了")
+      case "40004" => obj.setText("小乐今天累了,需要休息了")
     }
     print(obj.getText)
     obj.getText

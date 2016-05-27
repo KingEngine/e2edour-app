@@ -1,6 +1,7 @@
 package com.turing.util;
 
 
+import com.e2edour.common.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,12 +56,12 @@ public class PostServer {
 
             in = new BufferedReader(new InputStreamReader(
                     conn.getInputStream(), "UTF-8"));
-            String line = "";
+            String line;
             while ((line = in.readLine()) != null) {
                 result += line;
             }
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("PostServer url {},Exception:{}",url,LoggerUtil.getErrorMsg(e));
         } finally {
             try {
                 if (out != null) {
@@ -70,7 +71,7 @@ public class PostServer {
                     in.close();
                 }
             } catch (IOException ex) {
-                logger.error(ex.getMessage());
+                logger.error("PostServer url {},IOException:{}",url,LoggerUtil.getErrorMsg(ex));
             }
         }
         return result;
