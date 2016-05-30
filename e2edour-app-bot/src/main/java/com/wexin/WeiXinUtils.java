@@ -1,6 +1,5 @@
 package com.wexin;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -10,7 +9,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -20,6 +22,34 @@ import java.util.*;
  * @version 2016/5/27
  */
 public class WeiXinUtils {
+
+    public static String SHA1(String decript) {
+
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.update(decript.getBytes("UTF-8"));
+            byte messageDigest[] = digest.digest();
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            // 字节数组转换为 十六进制 数
+            for (int i = 0; i < messageDigest.length; i++) {
+                String shaHex = Integer.toHexString(messageDigest[i] & 0xFF);
+                if (shaHex.length() < 2) {
+                    hexString.append(0);
+                }
+                hexString.append(shaHex);
+            }
+            return hexString.toString();
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
     /**
      * 用于和微信公众平台对接，验证消息是否来自微信公众平台
      *
@@ -29,19 +59,23 @@ public class WeiXinUtils {
      * @param signature -微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
      * @return
      */
-    public static final boolean checkSignature(String token, String timestamp, String nonce, String signature) {
-        List<String> params = new ArrayList<String>();
-        params.add(token);
-        params.add(timestamp);
-        params.add(nonce);
-        Collections.sort(params, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        String temp = params.get(0) + params.get(1) + params.get(2);
-        return DigestUtils.shaHex(temp).equals(signature);
+
+    private static final  String token="wechatapi";
+    public static final boolean checkSignature(String timestamp, String nonce,String signature) {
+        String[] arr = new String[]{token, timestamp, nonce};
+        //排序
+        Arrays.sort(arr);
+        //生成字符串
+        StringBuffer content = new StringBuffer();
+        for (int i = 0; i < arr.length; i++) {
+            content.append(arr[i]);
+        }
+
+        System.out.println("token" + token);
+        System.out.println("timestamp" +timestamp);
+        System.out.println("nonce" +nonce);
+        System.out.println("shaHex" + SHA1(content.toString()));
+        return SHA1(content.toString()).equals(signature);
     }
 
     private static String weixinAccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token";

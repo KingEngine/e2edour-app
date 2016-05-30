@@ -23,7 +23,7 @@ public class WeixinServiceImpl implements WeixinFacade {
     }
 
     @Override
-    public boolean checkSignature(String signature, String timestamp, String nonce, String echostr) {
-        return weixinActor.checkSignature(signature, timestamp, nonce, echostr);
+    public boolean checkSignature(String timestamp,String nonce,String signature) {
+        return weixinActor.checkSignature(timestamp, nonce, signature);
     }
 }

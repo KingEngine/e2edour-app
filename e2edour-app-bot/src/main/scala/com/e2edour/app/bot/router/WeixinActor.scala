@@ -25,8 +25,8 @@ class WeixinActor{
     new WeixinRes
   }
 
-  def checkSignature(signature: String, timestamp: String, nonce: String, echostr: String): Boolean = {
-    WeiXinUtils.checkSignature(signature, timestamp, nonce, echostr)
+  def checkSignature(timestamp: String, nonce: String, signature: String): Boolean = {
+    WeiXinUtils.checkSignature(timestamp, nonce,signature)
   }
 
 }
