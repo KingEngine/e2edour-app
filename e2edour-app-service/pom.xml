@@ -30,6 +30,10 @@
             <artifactId>e2edour-app-persistence</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.e2edour</groupId>
+            <artifactId>e2edour-app-bot</artifactId>
+        </dependency>
+        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
         </dependency>

@@ -17,7 +17,7 @@ object TuringActor extends Actor{
 
 object Router {
 
-  def send(msg: String, userid: String): String = {
+  def send(msg: String, userid: String): TuringRes = {
     val apiKey = "a7ab2971e79c5ed477482bdc6c581bda";
     //封装请求参数
     val replaceWord = "图灵机器人"
@@ -34,10 +34,9 @@ object Router {
     obj.getCode match {
       //文本类型需要将图灵替换为小乐
       case "100000" => obj.setText(obj.getText.replaceAll(replaceWord, newWord))
-      case "40004" => obj.setText("小乐今天累了,需要休息了")
+      //case "40004" => obj.setText("小乐今天累了,需要休息了")
     }
-    print(obj.getText)
-    obj.getText
+    obj
   }
 
 }

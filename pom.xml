@@ -412,6 +412,12 @@
                 <artifactId>httpclient</artifactId>
                 <version>4.1.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.1.2</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient-cache</artifactId>
@@ -445,6 +451,11 @@
             <dependency>
                 <groupId>com.e2edour</groupId>
                 <artifactId>e2edour-common</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.e2edour</groupId>
+                <artifactId>e2edour-app-bot</artifactId>
                 <version>1.0</version>
             </dependency>
 

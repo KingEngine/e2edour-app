@@ -39,4 +39,7 @@
     
     <dubbo:service interface="com.e2edour.app.facade.EaasyManagerFacade"
                    ref="eaasyManagerService"/>
+
+    <dubbo:service interface="com.e2edour.app.facade.WeixinFacade"
+                   ref="weixinService"/>
 </beans>
