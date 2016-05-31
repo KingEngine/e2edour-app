@@ -1,7 +1,10 @@
 package com.e2edour.app.facade.response;
 
+import com.e2edour.app.facade.annotation.CDataAdapter;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 
 /**
@@ -22,6 +25,7 @@ public class WeixinRes implements Serializable{
 
 
     @XmlElement(name="CreateTime")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getCreateTime() {
         return createTime;
     }
@@ -30,6 +34,7 @@ public class WeixinRes implements Serializable{
         this.createTime = createTime;
     }
     @XmlElement(name="FromUserName")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getFromUserName() {
         return fromUserName;
     }
@@ -39,6 +44,7 @@ public class WeixinRes implements Serializable{
     }
 
     @XmlElement(name="ToUserName")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getToUserName() {
         return toUserName;
     }

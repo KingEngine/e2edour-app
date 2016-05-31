@@ -20,6 +20,7 @@ object TuringActor {
     json.put("userid", userid)
     //请求图灵api
     val result = PostServer.sendPost(json.toString(), "http://www.tuling123.com/openapi/api");
+    print(result)
     val obj: TuringRes = TuringJsonUtil.parse(result)
     //判断code类型
     obj

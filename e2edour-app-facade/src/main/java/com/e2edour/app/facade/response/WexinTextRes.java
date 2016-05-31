@@ -1,8 +1,11 @@
 package com.e2edour.app.facade.response;
 
+import com.e2edour.app.facade.annotation.CDataAdapter;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * @author King
@@ -18,6 +21,7 @@ public class WexinTextRes extends WeixinRes {
     private String msgType;
 
     @XmlElement(name="Content")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getContent() {
         return content;
     }
@@ -27,6 +31,7 @@ public class WexinTextRes extends WeixinRes {
     }
 
     @XmlElement(name="MsgType")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getMsgType() {
         return "text";
     }
