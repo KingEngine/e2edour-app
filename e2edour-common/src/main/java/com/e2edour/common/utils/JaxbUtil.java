@@ -1,12 +1,15 @@
 package com.e2edour.common.utils;
 
+import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
 import org.springframework.util.StringUtils;
 
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.namespace.QName;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Collection;
 
 /**
@@ -103,6 +106,14 @@ public class JaxbUtil {
             if (!StringUtils.isEmpty(encoding)) {
                 marshaller.setProperty(Marshaller.JAXB_ENCODING, encoding);
             }
+            marshaller.setProperty("com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler",
+                    new CharacterEscapeHandler() {
+                        @Override
+                        public void escape(char[] ch, int start, int length, boolean isAttVal,
+                                           Writer writer) throws IOException {
+                            writer.write(ch, start, length);
+                        }
+                    });
             return marshaller;
         } catch (JAXBException e) {
             throw new RuntimeException(e);
