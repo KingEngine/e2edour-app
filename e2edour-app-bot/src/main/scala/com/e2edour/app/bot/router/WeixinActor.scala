@@ -37,7 +37,7 @@ class WeixinActor {
         textRes.setContent(turlingRes.getText)
         val requestBinder = new JaxbUtil(classOf[WexinTextRes], classOf[JaxbUtil.CollectionWrapper])
         requestBinder.toXml(textRes)
-      case _ =>
+      case _ => ""
     }
 
   }
