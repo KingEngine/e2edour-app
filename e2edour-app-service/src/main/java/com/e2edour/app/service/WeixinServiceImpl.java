@@ -4,6 +4,7 @@ import com.e2edour.app.bot.router.WeixinActor;
 import com.e2edour.app.facade.WeixinFacade;
 import com.e2edour.app.facade.req.WeiXinReq;
 import com.e2edour.app.facade.response.WeixinRes;
+import com.e2edour.common.utils.JaxbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class WeixinServiceImpl implements WeixinFacade {
     private WeixinActor weixinActor;
 
     @Override
-    public WeixinRes handlerMsg(WeiXinReq req) {
-        return null;
+    public String handlerMsg(WeiXinReq req) {
+        return weixinActor.hanlder(req);
     }
 
     @Override

@@ -11,7 +11,7 @@ import com.e2edour.app.facade.response.WeixinRes;
  */
 public interface WeixinFacade {
 
-    WeixinRes handlerMsg(WeiXinReq req);
+    String handlerMsg(WeiXinReq req);
 
     /**
      * 验签
