@@ -36,11 +36,10 @@ class WeixinActor {
     turlingRes.getCode match {
       //文本类
       case TuringTypeCode.type_100000 =>
-        val textRes = new WeixinTextRes
+        implicit val textRes = new WeixinTextRes
         BeanUtils.copyProperties(weixinRes, textRes)
         textRes.setContent(turlingRes.getText.replaceAll(replaceWord, newWord))
-        val requestBinder = new JaxbUtil(classOf[WeixinTextRes], classOf[JaxbUtil.CollectionWrapper])
-        requestBinder.toXml(textRes)
+        parseWeixinRes
       //链接类
       case TuringTypeCode.type_200000 =>
         implicit val newsRes = new WeixinNewsRes
@@ -52,7 +51,7 @@ class WeixinActor {
         item.setTitle(turlingRes.getText)
         item.setUrl(turlingRes.getUrl)
         newsRes.setItems(items)
-        parseNewsRes
+        parseWeixinRes
       //新闻类
       case TuringTypeCode.type_302000 =>
         implicit val newsRes = new WeixinNewsRes
@@ -69,7 +68,7 @@ class WeixinActor {
           items.add(item)
         }
         newsRes.setItems(items)
-        parseNewsRes
+        parseWeixinRes
       //菜谱
       case TuringTypeCode.type_308000 =>
         implicit val newsRes = new WeixinNewsRes
@@ -86,14 +85,18 @@ class WeixinActor {
           items.add(item)
         }
         newsRes.setItems(items)
-        parseNewsRes
-      case _ => ""
+        parseWeixinRes
+      case _ =>
+        implicit val textRes = new WeixinTextRes
+        BeanUtils.copyProperties(weixinRes, textRes)
+        textRes.setContent("亲爱的，不明白你说的什么意思。")
+        parseWeixinRes
     }
 
   }
 
-  def parseNewsRes(implicit newsRes: WeixinNewsRes): String = {
-    val requestBinder = new JaxbUtil(classOf[WeixinNewsRes], classOf[JaxbUtil.CollectionWrapper])
+  def parseWeixinRes(implicit newsRes: WeixinRes): String = {
+    val requestBinder = new JaxbUtil(newsRes.getClass, classOf[JaxbUtil.CollectionWrapper])
     requestBinder.toXml(newsRes)
   }
 

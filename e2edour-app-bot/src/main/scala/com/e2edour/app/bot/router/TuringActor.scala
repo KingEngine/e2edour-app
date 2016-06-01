@@ -18,10 +18,13 @@ object TuringActor {
     val json = new JSONObject();
     json.put("key", apiKey);
     json.put("info", msg);
+    println(s"---------------[$userid] chat dialog---------------------")
+    println(s"[$userid] ask :$msg")
     json.put("userid", userid)
     //请求图灵api
-    val result = SendUtil.sendPost("http://www.tuling123.com/openapi/api",json.toString());
-    println(result)
+    val result = SendUtil.sendPost("http://www.tuling123.com/openapi/api", json.toString());
+    println(s"turling answer :$result")
+    println(s"----------------------------------------------------------")
     val obj: TuringRes = TuringJsonUtil.parse(result)
     //判断code类型
     obj
