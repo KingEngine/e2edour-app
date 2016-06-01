@@ -33,9 +33,7 @@ public class TuringJsonUtil {
         String json = "{\"list\":[{\"icon\":\"\",\"article\":\"test\",\"detailurl\":\"\",\"source\":\"\"},{\"icon\":\"\",\"article\":\"test\",\"detailurl\":\"\",\"source\":\"\"}],\"text\":\"test\",\"code\":\"302000\",\"url\":\"\"}";
 
         TuringRes result = parse(json);
-        for (News news : result.getList()) {
-            System.out.println(news.getArticle());
-        }
+        //result.getList();
 
     }
 }

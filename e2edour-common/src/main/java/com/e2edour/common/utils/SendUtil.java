@@ -1,7 +1,5 @@
-package com.turing.util;
+package com.e2edour.common.utils;
 
-
-import com.e2edour.common.utils.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,22 +11,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * HTTP工具类
- *
- * @author 图灵机器人
+ * @author King
+ * @version 2016/6/1
  */
-public class PostServer {
+public class SendUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(PostServer.class);
+    private static Logger logger = LoggerFactory.getLogger(SendUtil.class);
 
     /**
      * 向后台发送post请求
-     *
-     * @param param
      * @param url
+     * @param param
      * @return
      */
-    public static String sendPost(String param, String url) {
+    public static String sendPost(String url,String param) {
         OutputStreamWriter out = null;
         BufferedReader in = null;
         String result = "";
