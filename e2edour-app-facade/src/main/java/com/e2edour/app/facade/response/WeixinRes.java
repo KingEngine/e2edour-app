@@ -1,11 +1,11 @@
 package com.e2edour.app.facade.response;
 
-import com.e2edour.app.facade.annotation.CDataAdapter;
+import com.e2edour.common.annotation.CDataAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * 微信回复消息
@@ -19,20 +19,15 @@ public class WeixinRes implements Serializable{
 
     private String fromUserName;
 
-    private String createTime;
-
+    private long createTime;
 
 
 
     @XmlElement(name="CreateTime")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
-    public String getCreateTime() {
-        return createTime;
+    public long getCreateTime() {
+        return Calendar.getInstance().getTimeInMillis();
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
     @XmlElement(name="FromUserName")
     @XmlJavaTypeAdapter(CDataAdapter.class)
     public String getFromUserName() {
@@ -52,4 +47,6 @@ public class WeixinRes implements Serializable{
     public void setToUserName(String toUserName) {
         this.toUserName = toUserName;
     }
+
+
 }

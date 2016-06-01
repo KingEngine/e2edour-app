@@ -3,8 +3,9 @@ package com.e2edour.app.bot.router
 
 import com.e2edour.app.facade.req.WeiXinReq
 import com.e2edour.app.facade.response.{WeixinRes, WexinTextRes}
-import com.e2edour.common.utils.{BeanUtil, JaxbUtil}
+import com.e2edour.common.utils.JaxbUtil
 import com.wexin.WeiXinUtils
+import org.springframework.beans.BeanUtils
 import org.springframework.stereotype.Service
 
 /**
@@ -25,18 +26,20 @@ class WeixinActor {
     val turlingRes = Router.sendTuring(req.getContent, req.getFromUserName)
 
     val weixinRes = new WeixinRes
-    weixinRes.setToUserName(req.getToUserName)
-    weixinRes.setFromUserName(req.getFromUserName)
+    weixinRes.setToUserName(req.getFromUserName)
+    weixinRes.setFromUserName(req.getToUserName)
 
     turlingRes.getCode match {
       case "100000" =>
         turlingRes.setText(turlingRes.getText.replaceAll(replaceWord, newWord))
-        val textRes = BeanUtil.copyOne2One(weixinRes,classOf[WexinTextRes])
+        val textRes = new WexinTextRes
+        BeanUtils.copyProperties(weixinRes, textRes)
         textRes.setContent(turlingRes.getText)
         val requestBinder = new JaxbUtil(classOf[WexinTextRes], classOf[JaxbUtil.CollectionWrapper])
         val resStr = requestBinder.toXml(textRes)
-        print(s"xml:$resStr")
+        print(s"xml:\n$resStr")
         resStr
+      case "" =>
       case _ => ""
     }
 

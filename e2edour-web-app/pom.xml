@@ -68,4 +68,8 @@
             <artifactId>spring-oxm</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>e2edour-web-app</finalName>
+    </build>
 </project>

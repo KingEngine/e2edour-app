@@ -1,7 +1,6 @@
 package com.e2edour.app.facade.response;
 
-import com.e2edour.app.facade.annotation.CDataAdapter;
-
+import com.e2edour.common.annotation.CDataAdapter;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;

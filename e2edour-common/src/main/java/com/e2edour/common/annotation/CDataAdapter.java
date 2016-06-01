@@ -1,4 +1,4 @@
-package com.e2edour.app.facade.annotation;
+package com.e2edour.common.annotation;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

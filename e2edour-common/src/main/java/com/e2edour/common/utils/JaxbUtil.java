@@ -1,5 +1,8 @@
 package com.e2edour.common.utils;
 
+
+
+import com.e2edour.common.annotation.CDataAdapter;
 import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
 import org.springframework.util.StringUtils;
 
@@ -103,17 +106,15 @@ public class JaxbUtil {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+            marshaller.setProperty(CharacterEscapeHandler.class.getName(), new CharacterEscapeHandler() {
+                @Override
+                public void escape(char[] ch, int start, int length, boolean isAttVal, Writer out) throws IOException {
+                    out.write( ch, start, length );
+                }
+            });
             if (!StringUtils.isEmpty(encoding)) {
                 marshaller.setProperty(Marshaller.JAXB_ENCODING, encoding);
             }
-            marshaller.setProperty("com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler",
-                    new CharacterEscapeHandler() {
-                        @Override
-                        public void escape(char[] ch, int start, int length, boolean isAttVal,
-                                           Writer writer) throws IOException {
-                            writer.write(ch, start, length);
-                        }
-                    });
             return marshaller;
         } catch (JAXBException e) {
             throw new RuntimeException(e);
