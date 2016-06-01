@@ -14,4 +14,8 @@ class TuringRes {
   @BeanProperty var code = ""
 
   @BeanProperty var text = ""
+
+  @BeanProperty var url = ""
+
+
 }

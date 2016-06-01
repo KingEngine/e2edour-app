@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlType
 @XmlRootElement(name="xml")
-public class WexinTextRes extends WeixinRes {
+public class WeixinTextRes extends WeixinRes {
 
     private String content;
 
