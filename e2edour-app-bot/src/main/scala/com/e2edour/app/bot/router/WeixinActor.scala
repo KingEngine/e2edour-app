@@ -70,6 +70,23 @@ class WeixinActor {
         }
         newsRes.setItems(items)
         parseNewsRes
+      //菜谱
+      case TuringTypeCode.type_308000 =>
+        implicit val newsRes = new WeixinNewsRes
+        BeanUtils.copyProperties(weixinRes, newsRes)
+        newsRes.setArticleCount(turlingRes.getList.size())
+        val items = new util.ArrayList[Item]()
+        for (i <- 0 to turlingRes.getList.size() - 1) {
+          val item = new Item
+          val news = turlingRes.getList.get(i)
+          item.setTitle(news.getName)
+          item.setUrl(news.getDetailurl)
+          item.setPicUrl(news.getIcon)
+          item.setDescription(news.getInfo)
+          items.add(item)
+        }
+        newsRes.setItems(items)
+        parseNewsRes
       case _ => ""
     }
 

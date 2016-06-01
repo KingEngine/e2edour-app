@@ -26,9 +26,15 @@ class TuringRes {
 
 class News {
 
-  @BeanProperty var article = ""
-  @BeanProperty var source = ""
   @BeanProperty var icon = ""
   @BeanProperty var detailurl = ""
+
+  //新闻
+  @BeanProperty var source = ""
+  @BeanProperty var article = ""
+
+  //菜谱
+  @BeanProperty var name = ""
+  @BeanProperty var info = ""
 
 }
