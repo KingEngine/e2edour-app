@@ -1,5 +1,7 @@
 package com.e2edour.app.bot.router
 
+import java.util
+
 import scala.beans.BeanProperty
 
 /**
@@ -17,5 +19,16 @@ class TuringRes {
 
   @BeanProperty var url = ""
 
+  @BeanProperty var list = new util.ArrayList[News]()
+
+
+}
+
+class News {
+
+  @BeanProperty var article = ""
+  @BeanProperty var source = ""
+  @BeanProperty var icon = ""
+  @BeanProperty var detailurl = ""
 
 }

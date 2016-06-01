@@ -33,6 +33,7 @@ class WeixinActor {
     weixinRes.setFromUserName(req.getToUserName)
 
     turlingRes.getCode match {
+      //文本类
       case "100000" =>
         turlingRes.setText(turlingRes.getText.replaceAll(replaceWord, newWord))
         val textRes = new WeixinTextRes
@@ -40,6 +41,7 @@ class WeixinActor {
         textRes.setContent(turlingRes.getText)
         val requestBinder = new JaxbUtil(classOf[WeixinTextRes], classOf[JaxbUtil.CollectionWrapper])
         requestBinder.toXml(textRes)
+      //链接类
       case "200000" =>
         val newsRes = new WeixinNewsRes
         BeanUtils.copyProperties(weixinRes, newsRes)
@@ -49,6 +51,26 @@ class WeixinActor {
         items.add(item)
         item.setTitle(turlingRes.getText)
         item.setUrl(turlingRes.getUrl)
+        newsRes.setItems(items)
+        val requestBinder = new JaxbUtil(classOf[WeixinNewsRes], classOf[JaxbUtil.CollectionWrapper])
+        requestBinder.toXml(newsRes)
+      //新闻类
+      case "302000" =>
+        val newsRes = new WeixinNewsRes
+        BeanUtils.copyProperties(weixinRes, newsRes)
+        newsRes.setArticleCount(turlingRes.getList.size())
+
+        val items = new util.ArrayList[Item]()
+        for(i<- 0 to turlingRes.getList.size()-1){
+          val item = new Item
+          val news = turlingRes.getList.get(i)
+          item.setTitle(news.getArticle)
+          item.setUrl(news.getDetailurl)
+          item.setPicUrl(news.getIcon)
+          item.setDescription(news.getSource)
+          items.add(item)
+        }
+
         newsRes.setItems(items)
         val requestBinder = new JaxbUtil(classOf[WeixinNewsRes], classOf[JaxbUtil.CollectionWrapper])
         requestBinder.toXml(newsRes)
