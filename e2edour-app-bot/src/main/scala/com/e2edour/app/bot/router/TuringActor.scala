@@ -1,6 +1,5 @@
 package com.e2edour.app.bot.router
 
-import akka.actor.Actor
 import com.alibaba.fastjson.JSONObject
 import com.e2edour.common.utils.SendUtil
 import com.turing.util._
@@ -24,7 +23,6 @@ object TuringActor {
     //请求图灵api
     val result = SendUtil.sendPost("http://www.tuling123.com/openapi/api", json.toString());
     println(s"turling answer :$result")
-    println(s"----------------------------------------------------------")
     val obj: TuringRes = TuringJsonUtil.parse(result)
     //判断code类型
     obj

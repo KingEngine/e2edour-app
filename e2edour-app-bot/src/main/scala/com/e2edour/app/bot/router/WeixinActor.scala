@@ -86,6 +86,11 @@ class WeixinActor {
         }
         newsRes.setItems(items)
         parseWeixinRes
+      case TuringTypeCode.error_40004 =>
+        implicit val textRes = new WeixinTextRes
+        BeanUtils.copyProperties(weixinRes, textRes)
+        textRes.setContent("亲爱的,小乐需要休息了")
+        parseWeixinRes
       case _ =>
         implicit val textRes = new WeixinTextRes
         BeanUtils.copyProperties(weixinRes, textRes)
