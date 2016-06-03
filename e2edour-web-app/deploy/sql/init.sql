@@ -17,7 +17,8 @@ db.menus.insert({ "_id" : ObjectId("5656a4d272dd0b2524a95c24"), "_class" : "com.
 db.menus.insert({ "_id" : ObjectId("5656b21972dd0b2524a95c25"), "_class" : "com.e2edour.app.dao.bean.MenusDO", "menu_id" : "1201", "name" : "新增文章", "menu_level" : "3", "url" : "contentManager/eaasyManager/eaasyAdd/pagePre", "parent_menu_id" : "1200" });
 
 db.navigation.insert({ "_id" : ObjectId("56580cafba831f173cc0de28"), "_class" : "com.e2edour.app.dao.bean.NavigationDO", "name" : "文字笑话", "code" : "E2E_NAV_0001", "url" : "getTopics/Text/1" });
+db.navigation.insert({ "_id" : ObjectId("56580cafba831f173cc0de29"), "_class" : "com.e2edour.app.dao.bean.NavigationDO", "name" : "马又点虫", "code" : "E2E_NAV_0002", "url" : "getEaasy/1" });
 
 
-db.checked_topics.insert({ "_id" : ObjectId("56585449af5b9a08d674f6fa"), "_class" : "com.e2edour.app.dao.bean.CheckedTopicsDO", "type" : "Text", "title" : "陛下……避下", "content" : "<p> 我刚走到胡同里，就听见天台上有人叫： “陛下……陛下！” 于是我仰面应了一声：“干吗！” 然后就被泼了一身的水。 楼上泼水的女的说：“早喊了， 让你避一下嘛， 你怎么一点反响都没有呢？” </p>", "createDate" : ISODate("2015-11-30T07:32:19.602Z"), "channel" : "Fetcher", "author" : "http://www.klbaomihua.com/text/index.html"});
+db.checked_topics.insert({ "_id" : ObjectId("56585449af5b9a08d674f6fb"), "_class" : "com.e2edour.app.dao.bean.CheckedTopicsDO", "type" : "Text", "title" : "陛下……避下", "content" : "<p> 我刚走到胡同里，就听见天台上有人叫： “陛下……陛下！” 于是我仰面应了一声：“干吗！” 然后就被泼了一身的水。 楼上泼水的女的说：“早喊了， 让你避一下嘛， 你怎么一点反响都没有呢？” </p>", "createDate" : ISODate("2015-11-30T07:32:19.602Z"), "channel" : "Fetcher", "author" : "http://www.klbaomihua.com/text/index.html"});
 
