@@ -13,7 +13,9 @@ public class Scheduler {
 	/**
 	 * 定时抓取网页面容
 	 */
-	void fetcher(){
+	public void fetcher(){
 		fetcherThread.doFetcher();
 	}
+
+
 }
