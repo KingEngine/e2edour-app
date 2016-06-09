@@ -10,13 +10,15 @@ import com.e2edour.common.bean.Page;
  */
 public interface EaasyManagerFacade {
 
-    public CommonResponse addUncheckedEaasy(UncheckedEaasyBO uncheckedEaasyBO);
+    CommonResponse addUncheckedEaasy(UncheckedEaasyBO uncheckedEaasyBO);
 
-    public CommonResponse queryUncheckedEaasyForOne(UncheckedEaasyBO uncheckedEaasyBO);
+    CommonResponse queryUncheckedEaasyForOne(UncheckedEaasyBO uncheckedEaasyBO);
 
-    public CommonResponse verifyUncheckedEaasy(String[] ids, String status);
+    CommonResponse verifyUncheckedEaasy(String[] ids, String status);
 
-    public Page<UncheckedEaasyBO> queryUnCheckedEaasyForPage(Page page,UncheckedEaasyBO uncheckedEaasyBO);
+    Page<UncheckedEaasyBO> queryUnCheckedEaasyForPage(Page page, UncheckedEaasyBO uncheckedEaasyBO);
 
-    public Page<CheckedEaasyBO> queryCheckedEaasyForPage(Page page,CheckedEaasyBO checkedEaasyBO);
+    Page<CheckedEaasyBO> queryCheckedEaasyForPage(Page page, CheckedEaasyBO checkedEaasyBO);
+
+    CheckedEaasyBO queryCheckedEaasyForOne(String id);
 }

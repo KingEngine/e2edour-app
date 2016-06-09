@@ -77,6 +77,14 @@ public class EaasyManagerServiceImpl implements EaasyManagerFacade{
     }
 
     @Override
+    public CheckedEaasyBO queryCheckedEaasyForOne(String id) {
+        CheckedEaasyDO checkedEaasyDO = new CheckedEaasyDO();
+        checkedEaasyDO.setId(id);
+        CheckedEaasyDO result = checkedEaasyDao.selectOne(checkedEaasyDO);
+        return BeanUtil.copyOne2One(result,CheckedEaasyBO.class);
+    }
+
+    @Override
     public Page<UncheckedEaasyBO> queryUnCheckedEaasyForPage(Page page, UncheckedEaasyBO uncheckedEaasyBO) {
         UncheckedEaasyDO uncheckedEaasyDO = BeanUtil.copyOne2One(uncheckedEaasyBO, UncheckedEaasyDO.class);
         Sort sort = new Sort(Sort.Direction.DESC, "createDate");
