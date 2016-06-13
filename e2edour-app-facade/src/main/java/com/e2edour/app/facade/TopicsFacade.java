@@ -20,21 +20,25 @@ public interface TopicsFacade {
 
     /**
      * 插入未审核贴子
+     *
      * @param uncheckedTopicsBO
      */
-    public void addUncheckedTopic(UncheckedTopicsBO uncheckedTopicsBO);
+    void addUncheckedTopic(UncheckedTopicsBO uncheckedTopicsBO);
 
-    public Page<UncheckedTopicsBO> queryUncheckedTopicsForPage(Page<?> page,UncheckedTopicsBO uncheckedTopicsBO);
+    Page<UncheckedTopicsBO> queryUncheckedTopicsForPage(Page<?> page, UncheckedTopicsBO uncheckedTopicsBO);
 
     /**
      * 审核未审核贴
+     *
      * @param ids
      * @param status
      * @return
      */
-    public CommonResponse verifyUncheckedTopics(String[] ids,String status);
+    boolean verifyUncheckedTopics(String[] ids, String status);
 
-    public List<UncheckedTopicsBO> getUncheckedTopics(UncheckedTopicsBO uncheckedTopicsBO);
+    List<UncheckedTopicsBO> getUncheckedTopics(UncheckedTopicsBO uncheckedTopicsBO);
 
-    public Page<CheckedTopicsBO> queryCheckedTopicsForPage(Page<?> page,CheckedTopicsBO checkedTopicsBO);
+    Page<CheckedTopicsBO> queryCheckedTopicsForPage(Page<?> page, CheckedTopicsBO checkedTopicsBO);
+
+    boolean deleteCheckedTopics(String[] ids);
 }

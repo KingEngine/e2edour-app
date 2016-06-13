@@ -76,16 +76,15 @@ public class TopicsServiceImpl implements TopicsFacade {
     }
 
     @Override
-    public CommonResponse verifyUncheckedTopics(String[] ids, String status) {
+    public boolean verifyUncheckedTopics(String[] ids, String status) {
         List<UncheckedTopicsDO> uncheckedTopicsDOs = new ArrayList<UncheckedTopicsDO>();
-        CommonResponse response = new CommonResponse();
-        response.setResCode(RspCode.success.getCode());
         try {
             for (String id : ids) {
                 UncheckedTopicsDO uncheckedTopicsDO = new UncheckedTopicsDO();
                 uncheckedTopicsDO.setId(id);
-                //查询未审核的贴子,同时把贴子从未审核库中删除
+                //1.查询未审核的贴子
                 uncheckedTopicsDOs.add(uncheckedTopicsDao.selectOne(uncheckedTopicsDO));
+                //2.同时把贴子从未审核库中删除
                 uncheckedTopicsDao.remove(uncheckedTopicsDO);
             }
             //如果贴子通过,则把数据放到审核库中
@@ -105,11 +104,10 @@ public class TopicsServiceImpl implements TopicsFacade {
                 }
             }
         } catch (Exception e) {
-            logger.error(LoggerUtil.getErrorMsg(e));
-            response.setResCode(RspCode.error.getCode());
-            response.setResMsg(e.getMessage());
+            logger.error("未审核贴操作error:{}" + LoggerUtil.getErrorMsg(e));
+            return false;
         }
-        return response;
+        return true;
     }
 
     @Override
@@ -129,7 +127,48 @@ public class TopicsServiceImpl implements TopicsFacade {
         resultPage.setCurrent(daoPage.getCurrent());
         resultPage.setRowCount(page.getRowCount());
         resultPage.setTotal(daoPage.getTotal());
-        resultPage.setRows(BeanUtil.copyList2List(daoPage.getRows(), CheckedTopicsBO.class));
+
+        List<CheckedTopicsBO> list = new ArrayList<CheckedTopicsBO>();
+        for (CheckedTopicsDO checkedTopics : daoPage.getRows()) {
+            CheckedTopicsBO bo = BeanUtil.copyOne2One(checkedTopics, CheckedTopicsBO.class);
+            bo.setCreateDateStr(DateFormatUtils.format(bo.getCreateDate(), Constants.DATE_PATTERN));
+            for (TopicsType value : TopicsType.values()) {
+                if (StringUtils.equals(bo.getType(), value.getCode())) {
+                    bo.setType(value.getDesc());
+                    break;
+                }
+            }
+            for (TopicsChannel value : TopicsChannel.values()) {
+                if (StringUtils.equals(bo.getChannel(), value.getCode())) {
+                    bo.setChannel(value.getDesc());
+                    break;
+                }
+            }
+            list.add(bo);
+        }
+        resultPage.setRows(list);
         return resultPage;
+    }
+
+    @Override
+    public boolean deleteCheckedTopics(String[] ids) {
+        try {
+            for (String id : ids) {
+                CheckedTopicsDO paramCheckTopics = new CheckedTopicsDO();
+                paramCheckTopics.setId(id);
+                //1.查询贴子
+                CheckedTopicsDO result = checkedTopicsDao.selectOne(paramCheckTopics);
+                //2.同时把贴子从未审核库中删除
+                checkedTopicsDao.remove(result);
+                DeletedTopicsDO deletedTopicsDO = BeanUtil.copyOne2One(result, DeletedTopicsDO.class);
+                deletedTopicsDO.setCreateDate(new Date());
+                //3.数据放到删除库中
+                deletedTopicsDao.insert(deletedTopicsDO);
+            }
+        } catch (Exception e) {
+            logger.error("删除已审核贴操作error:{}" + LoggerUtil.getErrorMsg(e));
+            return false;
+        }
+        return true;
     }
 }

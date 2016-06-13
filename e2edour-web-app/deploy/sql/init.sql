@@ -21,5 +21,5 @@ db.navigation.insert({ "_id" : ObjectId("56580cafba831f173cc0de29"), "_class" : 
 
 
 db.checked_topics.insert({ "_id" : ObjectId("56585449af5b9a08d674f6fb"), "_class" : "com.e2edour.app.dao.bean.CheckedTopicsDO", "type" : "Text", "title" : "陛下……避下", "content" : "<p> 我刚走到胡同里，就听见天台上有人叫： “陛下……陛下！” 于是我仰面应了一声：“干吗！” 然后就被泼了一身的水。 楼上泼水的女的说：“早喊了， 让你避一下嘛， 你怎么一点反响都没有呢？” </p>", "createDate" : ISODate("2015-11-30T07:32:19.602Z"), "channel" : "Fetcher", "author" : "http://www.klbaomihua.com/text/index.html"});
-db.unchecked_topics.insert({ "_id" : ObjectId("56585449af5b9a08d674f6fb"), "_class" : "com.e2edour.app.dao.bean.CheckedTopicsDO", "type" : "Text", "title" : "陛下……避下", "content" : "<p> 我刚走到胡同里，就听见天台上有人叫： “陛下……陛下！” 于是我仰面应了一声：“干吗！” 然后就被泼了一身的水。 楼上泼水的女的说：“早喊了， 让你避一下嘛， 你怎么一点反响都没有呢？” </p>", "createDate" : ISODate("2015-11-30T07:32:19.602Z"), "channel" : "Fetcher", "author" : "http://www.klbaomihua.com/text/index.html"});
+db.unchecked_topics.insert({ "_id" : ObjectId("56512121af5b9a08d674f6fb"), "_class" : "com.e2edour.app.dao.bean.CheckedTopicsDO", "type" : "Text", "title" : "陛下……避下", "content" : "<p> 我刚走到胡同里，就听见天台上有人叫： “陛下……陛下！” 于是我仰面应了一声：“干吗！” 然后就被泼了一身的水。 楼上泼水的女的说：“早喊了， 让你避一下嘛， 你怎么一点反响都没有呢？” </p>", "createDate" : ISODate("2015-11-30T07:32:19.602Z"), "channel" : "Fetcher", "author" : "http://www.klbaomihua.com/text/index.html"});
 
