@@ -32,10 +32,11 @@ public class FetcherServiceImpl implements FetcherFacade {
         List<FetcherIndex> indexs = fetcherIndexDao.selectList(new FetcherIndex());
         List<FetcherIndexBO> indexBos = new ArrayList<FetcherIndexBO>();
         for (FetcherIndex o : indexs) {
-            indexBos.add( BeanUtil.copyOne2One(o, FetcherIndexBO.class));
+            indexBos.add(BeanUtil.copyOne2One(o, FetcherIndexBO.class));
         }
         return indexBos;
     }
+
     @Override
     public Page<FetcherIndexBO> queryFetcherIndexsForPage(Page<?> page) {
         FetcherIndex fetcherIndex = new FetcherIndex();
@@ -48,34 +49,40 @@ public class FetcherServiceImpl implements FetcherFacade {
         resultPage.setRows(list);
         return resultPage;
     }
+
     @Override
-    public CommonResponse addFetcherIndex(FetcherIndexBO fetcherIndexBO) {
-        CommonResponse response = new CommonResponse();
+    public boolean addFetcherIndex(FetcherIndexBO fetcherIndexBO) {
         FetcherIndex fetcherIndex = BeanUtil.copyOne2One(fetcherIndexBO, FetcherIndex.class);
         try {
             fetcherIndexDao.insert(fetcherIndex);
-            response.setResCode(RspCode.success.getCode());
         } catch (Exception e) {
-            logger.error(LoggerUtil.getErrorMsg(e));
-            response.setResCode(RspCode.error.getCode());
-            response.setResMsg(e.getMessage());
+            logger.error("FetcherService addFetcherIndex error{}", LoggerUtil.getErrorMsg(e));
+            return false;
         }
-        return response;
+        return true;
     }
 
     @Override
-    public CommonResponse deleteFetcherIndex(FetcherIndexBO fetcherIndexBO) {
-        CommonResponse response = new CommonResponse();
+    public boolean deleteFetcherIndex(FetcherIndexBO fetcherIndexBO) {
         FetcherIndex fetcherIndex = BeanUtil.copyOne2One(fetcherIndexBO, FetcherIndex.class);
         try {
-            logger.info("fetcherIndexDao.remove param:\n{}", XmlUtil.toXml(fetcherIndex));
             fetcherIndexDao.remove(fetcherIndex);
-            response.setResCode(RspCode.success.getCode());
         } catch (Exception e) {
-            logger.error(LoggerUtil.getErrorMsg(e));
-            response.setResCode(RspCode.error.getCode());
-            response.setResMsg(e.getMessage());
+            logger.error("FetcherService deleteFetcherIndex error{}", LoggerUtil.getErrorMsg(e));
+            return false;
         }
-        return  response;
+        return true;
+    }
+
+    @Override
+    public boolean updateFetcherIndex(FetcherIndexBO fetcherIndexBO) {
+        FetcherIndex fetcherIndex = BeanUtil.copyOne2One(fetcherIndexBO, FetcherIndex.class);
+        try {
+            fetcherIndexDao.updateByPk(fetcherIndex,fetcherIndex.getId());
+        } catch (Exception e) {
+            logger.error("FetcherService updateFetcherIndex error{}", LoggerUtil.getErrorMsg(e));
+            return false;
+        }
+        return true;
     }
 }

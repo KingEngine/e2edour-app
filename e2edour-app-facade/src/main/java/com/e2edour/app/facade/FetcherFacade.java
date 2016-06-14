@@ -16,7 +16,9 @@ public interface FetcherFacade {
 
     Page<FetcherIndexBO> queryFetcherIndexsForPage(Page<?> page);
 
-    CommonResponse addFetcherIndex(FetcherIndexBO fetcherIndexBO);
+    boolean addFetcherIndex(FetcherIndexBO fetcherIndexBO);
 
-    CommonResponse deleteFetcherIndex(FetcherIndexBO fetcherIndexBO);
+    boolean deleteFetcherIndex(FetcherIndexBO fetcherIndexBO);
+
+    boolean updateFetcherIndex(FetcherIndexBO fetcherIndexBO);
 }

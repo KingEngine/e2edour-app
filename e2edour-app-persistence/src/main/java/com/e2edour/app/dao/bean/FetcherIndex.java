@@ -9,9 +9,9 @@ public class FetcherIndex {
 	@Id
 	private String id;
 
-	private String className;
 	@Indexed(unique=true)
 	private String[] urls;
+	private String className;
 
 	public String getId() {
 		return id;

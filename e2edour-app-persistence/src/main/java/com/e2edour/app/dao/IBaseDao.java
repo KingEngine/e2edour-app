@@ -21,5 +21,5 @@ public interface IBaseDao<T> {
 
 	void remove(T t);
 
-	public void updateByPk(T t,String id);
+	void updateByPk(T t,String id);
 }
