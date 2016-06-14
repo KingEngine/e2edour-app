@@ -27,7 +27,7 @@ class WeixinActor {
 
   def hanlder(req: WeiXinReq): String = {
 
-    val turlingRes = Router.sendTuring(req.getContent, req.getFromUserName)
+    val turlingRes = Router.sendTuring(req.getContent, req.getFromUserName).get
 
     val weixinRes = new WeixinRes
     weixinRes.setToUserName(req.getFromUserName)

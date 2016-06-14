@@ -17,7 +17,7 @@ object TuringActor {
 
   val apiKey = "a7ab2971e79c5ed477482bdc6c581bda";
 
-  def send(msg: String, userid: String): TuringRes = {
+  def send(msg: String, userid: String): Option[TuringRes] = {
 
     val json = new JSONObject();
     json.put("key", apiKey);
@@ -33,12 +33,12 @@ object TuringActor {
         res.setUrl("http://3g.163.com");
         res.setCode(TuringTypeCode.type_200000)
         res.setText("新闻")
-        res
+        Some(res)
       case _ =>
         val result = SendUtil.sendPost("http://www.tuling123.com/openapi/api", json.toString())
-        logger.info(s"turling answer :[$result]")
+        logger.info(s"[turling] answer :[$result]")
         val obj: TuringRes = TuringJsonUtil.parse(result)
-        obj
+        Some(obj)
     }
 
   }
@@ -46,7 +46,7 @@ object TuringActor {
 
 object Router {
 
-  def sendTuring(msg: String, userid: String): TuringRes = {
+  def sendTuring(msg: String, userid: String): Option[TuringRes] = {
     TuringActor.send(msg, userid)
   }
 
